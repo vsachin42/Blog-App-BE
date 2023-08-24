@@ -22,6 +22,12 @@ blogRouter.get("/blogs", async(req,res) => {
       }
 })
 
+blogRouter.get("/blogs/:id", async(req,res) => {
+    const id = req.params.id;
+       const blog = blogModel.findOne({_id:id});
+       res.status(200).json({blog});
+})
+
 
 blogRouter.post("/blogs", async(req,res) => {
     try{
