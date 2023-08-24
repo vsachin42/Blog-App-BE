@@ -23,9 +23,13 @@ blogRouter.get("/blogs", async(req,res) => {
 })
 
 blogRouter.get("/blogs/:id", async(req,res) => {
-    const id = req.params.id;
-       const blog = blogModel.findOne({_id:id});
-       res.status(200).json({blog});
+    try{
+        const id = req.params.id;
+        const blog = await blogModel.findOne({_id:id});
+        res.status(200).json({blog});
+    }catch(err){
+        res.status(400).json({err});
+    }
 })
 
 
